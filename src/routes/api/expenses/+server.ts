@@ -1,5 +1,5 @@
 import { Prisma } from '@prisma/client';
-import { json } from '@sveltejs/kit';
+import { error, json } from '@sveltejs/kit';
 import { isSameDay } from 'date-fns';
 import prisma from '$lib/server/prisma';
 import type { RequestHandler } from './$types';
@@ -20,9 +20,18 @@ const expenseWithCategory = Prisma.validator<Prisma.ExpenseDefaultArgs>()({
 
 export type ExpenseWithCategory = Prisma.ExpenseGetPayload<typeof expenseWithCategory>;
 
-export const GET: RequestHandler = async () => {
+export const GET: RequestHandler = async ({ locals }) => {
+	const session = await locals.auth.validate();
+
+	if (!session) {
+		return error(401);
+	}
+
 	const expenses = await prisma.expense.findMany({
 		select: expenseWithCategory.select,
+		where: {
+			userId: session.user.userId
+		},
 		orderBy: {
 			createdAt: 'desc'
 		},

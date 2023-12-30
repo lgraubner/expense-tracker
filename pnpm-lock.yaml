@@ -5,12 +5,18 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@lucia-auth/adapter-prisma':
+    specifier: 3.0.2
+    version: 3.0.2(@prisma/client@5.7.1)(lucia@2.7.6)
   '@prisma/client':
     specifier: 5.7.1
     version: 5.7.1(prisma@5.7.1)
   clsx:
     specifier: 2.0.0
     version: 2.0.0
+  lucia:
+    specifier: 2.7.6
+    version: 2.7.6
   lucide-svelte:
     specifier: 0.300.0
     version: 0.300.0(svelte@4.2.8)
@@ -628,6 +634,16 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  /@lucia-auth/adapter-prisma@3.0.2(@prisma/client@5.7.1)(lucia@2.7.6):
+    resolution: {integrity: sha512-EyJWZene1/zasPwPctv8wwNErZt5mwwm5JATbhg+kXr3R8pbC7lJfVzDTAeeFClVH5k/FywRcsBl3JkPaNIcow==}
+    peerDependencies:
+      '@prisma/client': ^4.2.0 || ^5.0.0
+      lucia: ^2.0.0
+    dependencies:
+      '@prisma/client': 5.7.1(prisma@5.7.1)
+      lucia: 2.7.6
+    dev: false
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -2069,6 +2085,10 @@ packages:
     dependencies:
       yallist: 4.0.0
     dev: true
+
+  /lucia@2.7.6:
+    resolution: {integrity: sha512-xyRkNtevf0DUM4nGC6F2nCFFNphZ1qqBrfWwAgPa9zkpQsVJ/hN32I8zAY+pm+ZKWPPS/C/Sqqmo2LreSCzg7w==}
+    dev: false
 
   /lucide-svelte@0.300.0(svelte@4.2.8):
     resolution: {integrity: sha512-oRWQR+ESh1zedKipUir8aXxbPeThrJ32OYJzcVpTMA2fj9mZUhG9Gn9MDFSLapKpzBF63XvA91eaxqeAhQ0icQ==}

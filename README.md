@@ -2,9 +2,6 @@
 
 ## Todo
 
-- improve add expense form handling
-  - show errors
-- Auth
 - PWA stuff
 
 ### later
@@ -16,6 +13,10 @@
 - shallow routing stuff
 - Statistics
 - desktop version: move plus next to heading
+- admin area manage categories
+- self manage categories
+- email verification
+- password reset
 
 ## Development
 

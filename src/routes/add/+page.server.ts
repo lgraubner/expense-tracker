@@ -19,7 +19,13 @@ export const load: PageServerLoad = async () => {
 };
 
 export const actions = {
-	default: async ({ request }) => {
+	default: async ({ request, locals }) => {
+		const session = await locals.auth.validate();
+
+		if (!session) {
+			return fail(401);
+		}
+
 		const data = await request.formData();
 
 		const form = newEntrySchema.safeParse({
@@ -40,6 +46,11 @@ export const actions = {
 					category: {
 						connect: {
 							slug: form.data.categorySlug
+						}
+					},
+					user: {
+						connect: {
+							id: session.user.userId
 						}
 					}
 				}
