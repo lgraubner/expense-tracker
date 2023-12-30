@@ -55,6 +55,9 @@ docker compose exec db mariadb -uroot -ppassword db
 ```
 # create new deployment
 git push dokku main
+
+# run checks and deploy
+pnpm run deploy
 ```
 
 ## Misc
