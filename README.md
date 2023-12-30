@@ -2,21 +2,23 @@
 
 ## Todo
 
+- fix auth mobile layouts
+- disable browser input validation
 - PWA stuff
 
 ### later
 
-- pick date
-- delete entry
-  - uid for expense (for detail view?)
-- load more in timeline
-- shallow routing stuff
 - Statistics
-- desktop version: move plus next to heading
 - admin area manage categories
 - self manage categories
 - email verification
 - password reset
+- delete entry
+  - uid for expense (for detail view?)
+- pick date
+- load more in timeline
+- shallow routing stuff
+- desktop version: move plus next to heading
 
 ## Development
 
