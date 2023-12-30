@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	button,
+	[role='button'] {
+		cursor: default;
+	}
+}
+
+@layer utilities {
+	.pt-safe {
+		padding-top: env(safe-area-inset-top);
+	}
+
+	.pb-safe {
+		padding-bottom: env(safe-area-inset-bottom);
+	}
+
+	button.btn {
+		cursor: default;
+	}
+}

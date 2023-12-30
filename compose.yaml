@@ -1,0 +1,11 @@
+services:
+  db:
+    image: mariadb:11.1
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_DATABASE: db
+    volumes:
+      - ./docker/data:/var/lib/mysql
+    ports:
+      - '3306:3306'

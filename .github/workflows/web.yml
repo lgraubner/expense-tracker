@@ -1,0 +1,74 @@
+name: Web
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pnpm-lock.yaml'
+      - 'package.json'
+      - 'src/**'
+      - '.github/workflows/web.yml'
+
+env:
+  pnpm_version: 8.9
+  node_version: 20
+
+jobs:
+  Lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.pnpm_version }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node_version }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint files
+        run: pnpm run lint
+
+  Check:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.pnpm_version }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node_version }}
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run check
+        run: |
+          pnpm prisma generate
+          pnpm run check
+
+  # Deploy:
+  #   runs-on: ubuntu-22.04
+  #   if: github.ref == 'refs/heads/main'
+  #   needs: [Lint, Check]
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+  #
+  #     - name: Push to dokku
+  #       uses: dokku/github-action@master
+  #       with:
+  #         branch: main
+  #         ci_branch_name: main
+  #         git_remote_url: 'ssh://dokku@simplecmp.com:22/web'
+  #         ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
