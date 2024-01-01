@@ -14,9 +14,9 @@ export const actions = {
 			return fail(400, { form });
 		}
 
-		try {
-			const { email, password } = form.data;
+		const { identifier: email, passwd: password } = form.data;
 
+		try {
 			const key = await auth.useKey('email', email.toLowerCase(), password);
 
 			const session = await auth.createSession({
@@ -28,7 +28,7 @@ export const actions = {
 
 			logger.info(
 				{
-					usr: { id: form.data.email },
+					usr: { id: email },
 					evt: { category: 'authentication', name: 'email', outcome: 'success' },
 					network: { client: { ip: request.headers.get('x-forwarded-for') || null } }
 				},
@@ -41,7 +41,7 @@ export const actions = {
 			) {
 				logger.info(
 					{
-						usr: { id: form.data.email },
+						usr: { id: email },
 						evt: { category: 'authentication', name: 'email', outcome: 'failure' },
 						network: { client: { ip: request.headers.get('x-forwarded-for') || null } }
 					},

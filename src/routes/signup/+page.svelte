@@ -18,8 +18,8 @@
 	<title>Signup</title>
 </svelte:head>
 
-<div class="flex items-center justify-center h-screen">
-	<div class="max-w-sm grow">
+<div class="flex items-center justify-center h-dvh px-4">
+	<div class="max-w-sm grow pb-32">
 		<h1 class="text-3xl font-bold mb-6">Sign up</h1>
 		<form method="post" novalidate use:enhance>
 			<div class="form-control w-full">

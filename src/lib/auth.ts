@@ -2,8 +2,8 @@ import type { RequestEvent } from '@sveltejs/kit';
 import { z } from 'zod';
 
 export const loginSchema = z.object({
-	email: z.string().email('Invalid email address').toLowerCase(),
-	password: z.string().min(8, 'Must not be empty').max(255, 'Password too long')
+	identifier: z.string().email('Invalid email address').toLowerCase(),
+	passwd: z.string().min(8, 'Must not be empty').max(255, 'Password too long')
 });
 
 export function handleLoginRedirect(event: RequestEvent) {
