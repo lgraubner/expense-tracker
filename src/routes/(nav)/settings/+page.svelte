@@ -6,6 +6,10 @@
 	export let data: PageServerData;
 </script>
 
+<svelte:head>
+	<title>Settings</title>
+</svelte:head>
+
 <div class="px-4 pb-4 pt-16 h-full flex flex-col">
 	<Heading level="h1">Settings</Heading>
 
