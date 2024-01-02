@@ -1,9 +1,13 @@
 <script>
 	import { BarChartIcon, HomeIcon, UserIcon } from 'lucide-svelte';
-	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 
 	async function detectSWUpdate() {
+		if (!browser) {
+			return;
+		}
+
 		const registration = await navigator.serviceWorker.ready;
 
 		registration.addEventListener('updatefound', () => {
@@ -19,10 +23,7 @@
 		});
 	}
 
-	onMount(() => {
-		detectSWUpdate();
-		//
-	});
+	$: $page.url.pathname, detectSWUpdate();
 </script>
 
 <main class="h-full pb-16">
