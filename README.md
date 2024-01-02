@@ -4,23 +4,23 @@
 
 - disable browser input validation
 - Fixed button for categories
-- view transitions
 - add offline page
-- add vaul
 
 ### later
 
 - Statistics
+- view transitions
 - self manage categories
   - put icons in svg sprite
 - email verification
 - password reset
-- delete entry
-  - uid for expense (for detail view?)
+- expense detail view
+  - add vaul
+  - delete entry
+    - uid for expense (for detail view?)
 - pick date
 - load more in timeline
 - shallow routing stuff
-- desktop version: move plus next to heading
 
 ## Development
 

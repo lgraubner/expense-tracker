@@ -10,7 +10,9 @@ export const load: PageServerLoad = async (event) => {
 		redirect(302, handleLoginRedirect(event));
 	}
 
-	return {};
+	return {
+		email: session.user.email
+	};
 };
 
 export const actions: Actions = {
