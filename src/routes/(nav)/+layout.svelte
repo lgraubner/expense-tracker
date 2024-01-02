@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 </script>
 
-<main class="h-dvh pb-16">
+<main class="h-full pb-16">
 	<slot />
 </main>
 

@@ -87,7 +87,7 @@
 	<title>New expense</title>
 </svelte:head>
 
-<main class="h-dvh pt-16 px-4 pb-4">
+<main class="h-full pt-16 px-4 pb-4">
 	<button
 		type="button"
 		on:click={handleClickClose}

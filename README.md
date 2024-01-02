@@ -6,6 +6,7 @@
 - PWA stuff
 - Fixed button for categories
 - view transitions
+- add offline page
 
 ### later
 
