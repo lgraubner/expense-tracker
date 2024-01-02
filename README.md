@@ -4,6 +4,8 @@
 
 - disable browser input validation
 - PWA stuff
+- Fixed button for categories
+- view transitions
 
 ### later
 

@@ -8,13 +8,13 @@
 </main>
 
 <nav class="btm-nav">
-	<a href="/" class:active={$page.url.pathname === '/'}>
+	<a href="/" class:active={$page.url.pathname === '/'} aria-label="Home">
 		<HomeIcon />
 	</a>
-	<a href="/statistics" class:active={$page.url.pathname === '/statistics'}>
+	<a href="/statistics" class:active={$page.url.pathname === '/statistics'} aria-label="Statistics">
 		<BarChartIcon />
 	</a>
-	<a href="/settings" class:active={$page.url.pathname === '/settings'}>
+	<a href="/settings" class:active={$page.url.pathname === '/settings'} aria-label="Settings">
 		<UserIcon />
 	</a>
 </nav>
