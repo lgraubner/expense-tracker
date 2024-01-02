@@ -49,6 +49,9 @@ pnpm prisma migrate reset
 
 # access local databsae
 docker compose exec db mariadb -uroot -ppassword db
+
+# run seeds
+pnpm prisma db seed
 ```
 
 ## Deployment
