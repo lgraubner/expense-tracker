@@ -2,7 +2,6 @@
 
 ## Todo
 
-- create global formatter
 - disable browser input validation
 - Fixed button for categories
 - view transitions
