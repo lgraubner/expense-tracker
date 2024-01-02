@@ -2,11 +2,12 @@
 
 ## Todo
 
+- create global formatter
 - disable browser input validation
-- PWA stuff
 - Fixed button for categories
 - view transitions
 - add offline page
+- add vaul
 
 ### later
 
