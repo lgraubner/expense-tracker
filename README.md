@@ -3,7 +3,6 @@
 ## Todo
 
 - disable browser input validation
-- Fixed button for categories
 - add offline page
 
 ### later
