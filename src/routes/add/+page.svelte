@@ -95,52 +95,48 @@
 	>
 	<div class="flex flex-col h-full">
 		{#if page === 'amount'}
-			<div class="grow">
-				<Heading level="h1">New expense</Heading>
+			<Heading level="h1">New expense</Heading>
 
-				<div class="h-full grow flex flex-col justify-center items-center pb-24">
-					<div class="relative">
-						{#if amountError}
-							<div
-								class="absolute -top-10 text-error left-1/2 -translate-x-1/2 w-full max-w-xs text-center text-md"
-							>
-								{amountError}
-							</div>
-						{/if}
+			<div class="grow flex flex-col justify-center items-center pb-24">
+				<div class="relative">
+					{#if amountError}
+						<div
+							class="absolute -top-10 text-error left-1/2 -translate-x-1/2 w-full max-w-xs text-center text-md"
+						>
+							{amountError}
+						</div>
+					{/if}
 
-						<div class="font-semibold tabular-nums text-5xl text-center">
-							<input
-								type="text"
-								class="appearance-none bg-transparent w-full focus:outline-none pr-11 text-center tabular-nums"
-								inputmode="numeric"
-								on:keydown={handleAmountKeydown}
-								bind:value={formattedAmount}
-							/>
-							<div
-								class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center"
+					<div class="font-semibold tabular-nums text-5xl text-center">
+						<input
+							type="text"
+							class="appearance-none bg-transparent w-full focus:outline-none pr-11 text-center tabular-nums"
+							inputmode="numeric"
+							on:keydown={handleAmountKeydown}
+							bind:value={formattedAmount}
+						/>
+						<div
+							class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center"
+						>
+							<span class="invisible">{formattedAmount}</span><span
+								class="whitespace-nowrap w-11 shrink-0 text-left">&nbsp;€</span
 							>
-								<span class="invisible">{formattedAmount}</span><span
-									class="whitespace-nowrap w-11 shrink-0 text-left">&nbsp;€</span
-								>
-							</div>
 						</div>
 					</div>
-
-					<input
-						type="text"
-						class="input w-full text-center mt-8"
-						bind:value={description}
-						placeholder="Description"
-						on:keydown={handleDescriptionKeydown}
-					/>
 				</div>
+
+				<input
+					type="text"
+					class="input w-full text-center mt-8"
+					bind:value={description}
+					placeholder="Description"
+					on:keydown={handleDescriptionKeydown}
+				/>
 			</div>
 
-			<div class="mt-6">
-				<button type="button" class="btn btn-primary w-full" on:click={handleClickContinue}
-					>Continue</button
-				>
-			</div>
+			<button type="button" class="btn btn-primary w-full" on:click={handleClickContinue}
+				>Continue</button
+			>
 		{/if}
 
 		{#if page === 'category'}
@@ -148,7 +144,7 @@
 				<input type="hidden" name="amount" bind:value={amount} />
 				<input type="hidden" name="description" bind:value={description} />
 
-				<div class="grow flex flex-col shrink">
+				<div class="grow flex flex-col shrink min-h-0">
 					<Heading level="h2">Category</Heading>
 
 					{#if form?.error}
