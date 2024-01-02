@@ -59,8 +59,8 @@
 	{/await}
 </div>
 
-<a
-	href="/add"
-	class="btn btn-circle btn-lg btn-primary fixed bottom-20 right-4"
-	aria-label="Add expense"><PlusIcon size={24} /></a
->
+<div class="fixed bottom-20 right-4 pb-safe">
+	<a href="/add" class="btn btn-circle btn-lg btn-primary" aria-label="Add expense"
+		><PlusIcon size={24} /></a
+	>
+</div>
