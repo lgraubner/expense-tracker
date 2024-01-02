@@ -36,10 +36,6 @@ export const categories = [
 		slug: 'living'
 	},
 	{
-		title: 'Pets',
-		slug: 'pets'
-	},
-	{
 		title: 'Sports',
 		slug: 'sports'
 	},

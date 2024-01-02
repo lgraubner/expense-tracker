@@ -2,7 +2,6 @@
 
 ## Todo
 
-- fix auth mobile layouts
 - disable browser input validation
 - PWA stuff
 
