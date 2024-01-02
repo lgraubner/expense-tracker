@@ -27,5 +27,16 @@ module.exports = {
 				parser: '@typescript-eslint/parser'
 			}
 		}
-	]
+	],
+	rules: {
+		'svelte/button-has-type': 'error',
+		'svelte/block-lang': [
+			'error',
+			{
+				enforceScriptPresent: false,
+				enforceStylePresent: false,
+				script: ['ts']
+			}
+		]
+	}
 };
