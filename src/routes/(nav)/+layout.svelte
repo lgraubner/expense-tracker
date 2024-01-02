@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { BarChartIcon, HomeIcon, UserIcon } from 'lucide-svelte';
+	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 
@@ -12,6 +13,7 @@
 
 		registration.addEventListener('updatefound', () => {
 			const newSW = registration.installing;
+
 			newSW?.addEventListener('statechange', () => {
 				if (newSW.state === 'installed') {
 					if (confirm('New update available! Reload to update?')) {
@@ -23,7 +25,9 @@
 		});
 	}
 
-	$: $page.url.pathname, detectSWUpdate();
+	onMount(() => {
+		detectSWUpdate();
+	});
 </script>
 
 <main class="h-full pb-16">
