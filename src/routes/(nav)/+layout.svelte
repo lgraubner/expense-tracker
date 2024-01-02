@@ -7,7 +7,7 @@
 	<slot />
 </main>
 
-<nav class="btm-nav">
+<nav class="btm-nav box-content">
 	<a href="/" class:active={$page.url.pathname === '/'} aria-label="Home">
 		<HomeIcon />
 	</a>
