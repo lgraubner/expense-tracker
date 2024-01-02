@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { BarChartIcon, HomeIcon, UserIcon } from 'lucide-svelte';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
