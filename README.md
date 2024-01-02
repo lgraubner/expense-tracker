@@ -11,8 +11,8 @@
 ### later
 
 - Statistics
-- admin area manage categories
 - self manage categories
+  - put icons in svg sprite
 - email verification
 - password reset
 - delete entry

@@ -9,8 +9,6 @@ const ASSETS = [
 	...files // everything in `static`
 ];
 
-console.log(ASSETS);
-
 self.addEventListener('install', (event) => {
 	// Create a new cache and add all files to it
 	async function addFilesToCache() {
@@ -60,7 +58,6 @@ self.addEventListener('fetch', (event) => {
 				throw new Error('invalid response from fetch');
 			}
 
-			console.log(response);
 			if (response.status === 200) {
 				cache.put(event.request, response.clone());
 			}
@@ -80,4 +77,10 @@ self.addEventListener('fetch', (event) => {
 	}
 
 	event.respondWith(respond());
+});
+
+self.addEventListener('message', (event) => {
+	if (event.data && event.data.type === 'SKIP_WAITING') {
+		self.skipWaiting();
+	}
 });
