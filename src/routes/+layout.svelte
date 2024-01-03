@@ -7,7 +7,7 @@
 	function invokeServiceWorkerUpdateFlow(registration: ServiceWorkerRegistration) {
 		if (confirm('New version of the app is available. Refresh now?')) {
 			if (registration.waiting) {
-				registration.waiting.postMessage('SKIP_WAITING');
+				registration.waiting.postMessage({ type: 'SKIP_WAITING' });
 			}
 		}
 	}
@@ -19,11 +19,7 @@
 			return;
 		}
 
-		// ensure the case when the updatefound event was missed is also handled
-		// by re-invoking the prompt when there's a waiting Service Worker
-		if (registration.waiting) {
-			invokeServiceWorkerUpdateFlow(registration);
-		}
+		registration.update();
 	}
 
 	$: $page.url.pathname, checkForServiceWorkerUpdate();
@@ -33,6 +29,12 @@
 			registration = await navigator.serviceWorker.register('/service-worker.js', {
 				type: dev ? 'module' : 'classic'
 			});
+
+			// ensure the case when the updatefound event was missed is also handled
+			// by re-invoking the prompt when there's a waiting Service Worker
+			if (registration.waiting) {
+				invokeServiceWorkerUpdateFlow(registration);
+			}
 
 			// detect Service Worker update available and wait for it to become installed
 			registration.addEventListener('updatefound', () => {
