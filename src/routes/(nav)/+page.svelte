@@ -16,7 +16,7 @@
 </svelte:head>
 
 <div class="flex h-full flex-col overflow-auto px-4 pb-24 pt-16">
-	<Heading level="h1">This month</Heading>
+	<Heading level="h1">Januar</Heading>
 
 	{#await data.expensesStream}
 		<div class="mt-6 space-y-3">
