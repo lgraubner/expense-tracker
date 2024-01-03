@@ -3,7 +3,6 @@
 ## Todo
 
 - disable browser input validation
-- add offline page
 
 ### later
 
@@ -20,6 +19,8 @@
 - pick date
 - load more in timeline
 - shallow routing stuff
+  - for desktop?
+  - for expense detail modal?
 
 ## Development
 

@@ -9,11 +9,16 @@ const ASSETS = [
 	...files // everything in `static`
 ];
 
+const OFFLINE_URL = '/offline';
+
 self.addEventListener('install', (event) => {
 	// Create a new cache and add all files to it
 	async function addFilesToCache() {
 		const cache = await caches.open(CACHE);
 		await cache.addAll(ASSETS);
+
+		// cache offline page
+		await cache.add(new Request(OFFLINE_URL, { cache: 'reload' }));
 	}
 
 	event.waitUntil(addFilesToCache());
@@ -71,7 +76,17 @@ self.addEventListener('fetch', (event) => {
 			const response = await cache.match(event.request);
 
 			if (response) {
+				// return cached response
 				return response;
+			}
+
+			if (event.request.mode === 'navigate') {
+				// show offline page if this is an navigation request
+				const offlineResponse = await cache.match(OFFLINE_URL);
+
+				if (offlineResponse) {
+					return offlineResponse;
+				}
 			}
 
 			// if there's no cache, then just error out

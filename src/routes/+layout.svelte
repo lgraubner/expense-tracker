@@ -25,7 +25,7 @@
 	$: $page.url.pathname, checkForServiceWorkerUpdate();
 
 	onMount(async () => {
-		if ('serviceWorker' in navigator) {
+		if (!dev && 'serviceWorker' in navigator) {
 			registration = await navigator.serviceWorker.register('/service-worker.js', {
 				type: dev ? 'module' : 'classic'
 			});
