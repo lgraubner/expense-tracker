@@ -15,7 +15,7 @@
 	<title>Expense Tracker</title>
 </svelte:head>
 
-<div class="px-4 pb-24 pt-16 h-full flex flex-col overflow-auto">
+<div class="flex h-full flex-col overflow-auto px-4 pb-24 pt-16">
 	<Heading level="h1">This month</Heading>
 
 	{#await data.expensesStream}
@@ -33,7 +33,7 @@
 					<div class="space-y-3">
 						<DateHeading date={group[0].createdAt} />
 						<div
-							class="join join-vertical w-full rounded-lg border border-neutral divide-y divide-neutral"
+							class="join join-vertical w-full divide-y divide-neutral rounded-lg border border-neutral"
 						>
 							{#each group as expense}
 								<ExpenseCard
@@ -47,20 +47,20 @@
 				{/each}
 			</div>
 		{:else}
-			<div class="w-full flex items-center justify-center grow pb-16">
-				<div class="items-center flex flex-col">
+			<div class="flex w-full grow items-center justify-center pb-16">
+				<div class="flex flex-col items-center">
 					<img src={IllustrationStars} alt="" width={140} />
-					<p class="mt-14 mb-8 text-2xl font-medium">Nothing here yet</p>
+					<p class="mb-8 mt-14 text-2xl font-medium">Nothing here yet</p>
 
-					<a href="/add" class="btn btn-sm text-md">Add expense</a>
+					<a href="/add" class="text-md btn btn-sm">Add expense</a>
 				</div>
 			</div>
 		{/if}
 	{/await}
 </div>
 
-<div class="fixed bottom-20 right-4 pb-safe">
-	<a href="/add" class="btn btn-circle btn-lg btn-primary" aria-label="Add expense"
+<div class="pb-safe fixed bottom-20 right-4">
+	<a href="/add" class="btn btn-circle btn-primary btn-lg" aria-label="Add expense"
 		><PlusIcon size={24} /></a
 	>
 </div>

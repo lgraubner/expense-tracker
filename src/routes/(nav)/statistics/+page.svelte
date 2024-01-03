@@ -10,7 +10,7 @@
 	<title>Statistics</title>
 </svelte:head>
 
-<div class="px-4 pb-4 pt-16 h-full flex flex-col">
+<div class="flex h-full flex-col px-4 pb-4 pt-16">
 	<Heading level="h1">Statistics</Heading>
 
 	{#if data.currentMonthTotal}

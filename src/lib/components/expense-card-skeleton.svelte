@@ -1,9 +1,9 @@
 <div
-	class="pl-3 py-3.5 pr-4 flex items-center justify-between gap-x-3 animate-pulse border border-transparent"
+	class="flex animate-pulse items-center justify-between gap-x-3 border border-transparent py-3.5 pl-3 pr-4"
 >
 	<div class="flex items-center gap-x-3">
-		<div class="rounded-full w-12 h-12 bg-neutral"></div>
-		<div class="h-6 w-24 bg-neutral rounded"></div>
+		<div class="h-12 w-12 rounded-full bg-neutral"></div>
+		<div class="h-6 w-24 rounded bg-neutral"></div>
 	</div>
-	<div class="h-6 w-16 bg-neutral rounded"></div>
+	<div class="h-6 w-16 rounded bg-neutral"></div>
 </div>

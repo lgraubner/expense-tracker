@@ -87,39 +87,39 @@
 	<title>New expense</title>
 </svelte:head>
 
-<main class="h-full pt-16 px-4 pb-4">
+<main class="h-full px-4 pb-4 pt-16">
 	<button
 		type="button"
 		on:click={handleClickClose}
-		class="fixed top-2 right-2 btn btn-circle btn-ghost"><XIcon /></button
+		class="btn btn-circle btn-ghost fixed right-2 top-2"><XIcon /></button
 	>
-	<div class="flex flex-col h-full">
+	<div class="flex h-full flex-col">
 		{#if page === 'amount'}
 			<Heading level="h1">New expense</Heading>
 
-			<div class="grow flex flex-col justify-center items-center pb-24">
+			<div class="flex grow flex-col items-center justify-center pb-24">
 				<div class="relative">
 					{#if amountError}
 						<div
-							class="absolute -top-10 text-error left-1/2 -translate-x-1/2 w-full max-w-xs text-center text-md"
+							class="text-md absolute -top-10 left-1/2 w-full max-w-xs -translate-x-1/2 text-center text-error"
 						>
 							{amountError}
 						</div>
 					{/if}
 
-					<div class="font-semibold tabular-nums text-5xl text-center">
+					<div class="text-center text-5xl font-semibold tabular-nums">
 						<input
 							type="text"
-							class="appearance-none bg-transparent w-full focus:outline-none pr-11 text-center tabular-nums"
+							class="w-full appearance-none bg-transparent pr-11 text-center tabular-nums focus:outline-none"
 							inputmode="numeric"
 							on:keydown={handleAmountKeydown}
 							bind:value={formattedAmount}
 						/>
 						<div
-							class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center"
+							class="pointer-events-none absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center"
 						>
 							<span class="invisible">{formattedAmount}</span><span
-								class="whitespace-nowrap w-11 shrink-0 text-left">&nbsp;€</span
+								class="w-11 shrink-0 whitespace-nowrap text-left">&nbsp;€</span
 							>
 						</div>
 					</div>
@@ -127,7 +127,7 @@
 
 				<input
 					type="text"
-					class="input w-full text-center mt-8"
+					class="input mt-8 w-full text-center"
 					bind:value={description}
 					placeholder="Description"
 					on:keydown={handleDescriptionKeydown}
@@ -144,16 +144,16 @@
 				<input type="hidden" name="amount" bind:value={amount} />
 				<input type="hidden" name="description" bind:value={description} />
 
-				<div class="grow flex flex-col shrink min-h-0">
+				<div class="flex min-h-0 shrink grow flex-col">
 					<Heading level="h2">Category</Heading>
 
 					{#if form?.error}
-						<div class="text-error text-md mt-4">
+						<div class="text-md mt-4 text-error">
 							{form.error}
 						</div>
 					{/if}
 
-					<div class="shrink overflow-auto min-h-0 mt-4">
+					<div class="mt-4 min-h-0 shrink overflow-auto">
 						<input type="hidden" name="categorySlug" bind:value={selectedCategorySlug} />
 
 						<CategorySelection categories={data.categories} on:change={handleChangeCategory} />

@@ -17,12 +17,12 @@
 	}
 </script>
 
-<div class="gap-4 grid grid-cols-grid grid-cols-3">
+<div class="grid-cols-grid grid grid-cols-3 gap-4">
 	{#each categories as category}
 		<button
 			type="button"
 			class={clsx(
-				'flex flex-col items-center justify-center gap-y-3 rounded-lg border-2 px-2.5 font-medium bg-neutral aspect-[9/10]',
+				'flex aspect-[9/10] flex-col items-center justify-center gap-y-3 rounded-lg border-2 bg-neutral px-2.5 font-medium',
 				selectedCategory === category.slug ? 'border-primary' : 'border-neutral'
 			)}
 			on:click={() => handleClickCategory(category.slug)}

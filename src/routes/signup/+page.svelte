@@ -18,9 +18,9 @@
 	<title>Signup</title>
 </svelte:head>
 
-<div class="flex items-center justify-center h-full px-4">
+<div class="flex h-full items-center justify-center px-4">
 	<div class="max-w-sm grow pb-32">
-		<h1 class="text-3xl font-bold mb-6">Sign up</h1>
+		<h1 class="mb-6 text-3xl font-bold">Sign up</h1>
 		<form method="post" novalidate use:enhance>
 			<div class="form-control w-full">
 				<label class="label" for="email"><span class="label-text">Email</span></label>
@@ -55,7 +55,7 @@
 				{/if}
 			</div>
 
-			<button type="submit" class="btn btn-primary mt-8 btn-block"
+			<button type="submit" class="btn btn-primary btn-block mt-8"
 				>{#if $delayed}<span class="loading loading-spinner" />{:else}Sign up{/if}</button
 			>
 			<p class="mt-4 text-sm">

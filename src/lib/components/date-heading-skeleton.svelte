@@ -1,1 +1,1 @@
-<div class="h-5 bg-neutral animate-pulse w-44 rounded"></div>
+<div class="h-5 w-44 animate-pulse rounded bg-neutral"></div>

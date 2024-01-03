@@ -8,9 +8,9 @@
 	export let category: Pick<Category, 'slug' | 'title'>;
 </script>
 
-<div class="pl-3 py-3.5 pr-4 flex items-center justify-between gap-x-3">
+<div class="flex items-center justify-between gap-x-3 py-3.5 pl-3 pr-4">
 	<div class="flex items-center gap-x-3">
-		<div class="w-12 h-12 rounded-full bg-neutral flex items-center justify-center">
+		<div class="flex h-12 w-12 items-center justify-center rounded-full bg-neutral">
 			<svelte:component this={categoryIcons[category.slug]} />
 		</div>
 

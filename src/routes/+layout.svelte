@@ -2,6 +2,6 @@
 	import '../app.css';
 </script>
 
-<div class="max-w-lg w-full mx-auto pt-safe pb-safe h-full">
+<div class="pt-safe pb-safe mx-auto h-full w-full max-w-lg">
 	<slot />
 </div>

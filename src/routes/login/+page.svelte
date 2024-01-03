@@ -18,11 +18,11 @@
 	<title>Login</title>
 </svelte:head>
 
-<div class="flex items-center justify-center h-full px-4">
+<div class="flex h-full items-center justify-center px-4">
 	<div class="max-w-sm grow pb-32">
-		<h1 class="text-3xl font-bold mb-6">Login</h1>
+		<h1 class="mb-6 text-3xl font-bold">Login</h1>
 		<form method="post" use:enhance novalidate>
-			{#if $message}<p class="text-red-500 mb-">{$message}</p>{/if}
+			{#if $message}<p class="mb- text-red-500">{$message}</p>{/if}
 
 			<div class="form-control w-full">
 				<label class="label" for="identifier"><span class="label-text">Email</span></label>
@@ -62,11 +62,11 @@
 					<p class="text-red-500">{$errors.passwd}</p>
 				{/if}
 
-				<p class="text-right mt-2 hidden">
+				<p class="mt-2 hidden text-right">
 					<a href="/password-reset" class="link">Forgot your password?</a>
 				</p>
 
-				<button type="submit" class="btn btn-primary mt-8 btn-block"
+				<button type="submit" class="btn btn-primary btn-block mt-8"
 					>{#if $delayed}<span class="loading loading-spinner" />{:else}Login{/if}</button
 				>
 			</div>
