@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import '../app.css';
 	import { dev } from '$app/environment';
+	import { page } from '$app/stores';
 
 	function invokeServiceWorkerUpdateFlow(registration: ServiceWorkerRegistration) {
 		if (confirm('New version of the app is available. Refresh now?')) {
@@ -11,17 +12,27 @@
 		}
 	}
 
+	let registration: ServiceWorkerRegistration;
+
+	function checkForServiceWorkerUpdate() {
+		if (!registration) {
+			return;
+		}
+
+		// ensure the case when the updatefound event was missed is also handled
+		// by re-invoking the prompt when there's a waiting Service Worker
+		if (registration.waiting) {
+			invokeServiceWorkerUpdateFlow(registration);
+		}
+	}
+
+	$: $page.url.pathname, checkForServiceWorkerUpdate();
+
 	onMount(async () => {
 		if ('serviceWorker' in navigator) {
-			const registration = await navigator.serviceWorker.register('/service-worker.js', {
+			registration = await navigator.serviceWorker.register('/service-worker.js', {
 				type: dev ? 'module' : 'classic'
 			});
-
-			// ensure the case when the updatefound event was missed is also handled
-			// by re-invoking the prompt when there's a waiting Service Worker
-			if (registration.waiting) {
-				invokeServiceWorkerUpdateFlow(registration);
-			}
 
 			// detect Service Worker update available and wait for it to become installed
 			registration.addEventListener('updatefound', () => {
