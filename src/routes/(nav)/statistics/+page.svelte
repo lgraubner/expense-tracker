@@ -16,7 +16,7 @@
 	{#if data.currentMonthTotal}
 		<div class="stats">
 			<div class="stat">
-				<div class="stat-title mb-1">Monthly total</div>
+				<div class="stat-title mb-1">Current month total</div>
 				<div class="stat-value">{formatCents(data.currentMonthTotal)}</div>
 			</div>
 		</div>
