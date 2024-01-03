@@ -59,7 +59,7 @@
 				>{#if $delayed}<span class="loading loading-spinner" />{:else}Sign up{/if}</button
 			>
 			<p class="mt-4 text-sm">
-				By registering, you agree to the <a href="/" class="link">Terms and Conditions</a> and
+				By signing up, you agree to the <a href="/" class="link">Terms and Conditions</a> and
 				<a href="/" class="link">Privacy Policy</a>.
 			</p>
 		</form>
