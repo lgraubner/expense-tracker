@@ -22,8 +22,8 @@
 		<button
 			type="button"
 			class={clsx(
-				'flex aspect-[9/10] flex-col items-center justify-center gap-y-3 rounded-lg border-2 bg-neutral px-2.5 font-medium',
-				selectedCategory === category.slug ? 'border-primary' : 'border-neutral'
+				'flex aspect-[9/10] flex-col items-center justify-center gap-y-3 rounded-lg border-2 bg-base-200 px-2.5 font-medium',
+				selectedCategory === category.slug ? 'border-primary' : 'border-base-200'
 			)}
 			on:click={() => handleClickCategory(category.slug)}
 		>

@@ -10,11 +10,13 @@
 
 <div class="flex items-center justify-between gap-x-3 py-3.5 pl-3 pr-4">
 	<div class="flex items-center gap-x-3">
-		<div class="flex h-12 w-12 items-center justify-center rounded-full bg-neutral">
+		<div class="flex h-12 w-12 items-center justify-center rounded-full bg-base-200">
 			<svelte:component this={categoryIcons[category.slug]} />
 		</div>
 
-		<div class="overflow-hidden overflow-ellipsis whitespace-nowrap">{label ?? category.title}</div>
+		<div class="overflow-hidden overflow-ellipsis whitespace-nowrap">
+			{label ?? category.title}
+		</div>
 	</div>
-	<div>{formatCents(amount * -1)}</div>
+	<div class="font-medium">{formatCents(amount * -1)}</div>
 </div>
