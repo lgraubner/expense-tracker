@@ -20,7 +20,8 @@ export const load: PageServerLoad = async (event) => {
 		where: {
 			createdAt: {
 				gte: startOfMonth(new Date())
-			}
+			},
+			userId: session.user.userId
 		}
 	});
 
