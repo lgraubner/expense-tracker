@@ -9,8 +9,21 @@ export const load: PageServerLoad = async () => {
 		select: {
 			id: true,
 			title: true,
-			slug: true
-		}
+			slug: true,
+			_count: {
+				select: {
+					expenses: true
+				}
+			}
+		},
+		orderBy: [
+			{
+				expenses: {
+					_count: 'desc'
+				}
+			},
+			{ createdAt: 'asc' }
+		]
 	});
 
 	return {

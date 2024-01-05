@@ -13,6 +13,8 @@
 - view transitions
 - self manage categories
   - put icons in svg sprite
+  - categories for each user
+  - -> order by user usage, not global
 - email verification
 - password reset
 - expense detail view
