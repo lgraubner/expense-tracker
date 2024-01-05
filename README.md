@@ -2,7 +2,7 @@
 
 ## Todo
 
-- adjust add category layout
+- add total to start page
 - disable browser input validation
 - error page
 - solution for offline pages
@@ -10,22 +10,28 @@
 
 ### later
 
+- income/deposits
+  - polymorphic stuff?
 - Statistics
 - view transitions
 - self manage categories
   - put icons in svg sprite
   - categories for each user
   - -> order by user usage, not global
+  - adjust default categories
 - email verification
 - password reset
 - expense detail view
   - add vaul
   - delete entry
     - uid for expense (for detail view?)
+  - edit entry
 - load more in timeline
 - shallow routing stuff
   - for desktop?
   - for expense detail modal?
+- tags (Aldi, Amazon etc.)
+- recurring expenses
 
 ## Development
 

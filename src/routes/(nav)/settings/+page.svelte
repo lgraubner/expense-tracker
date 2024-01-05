@@ -10,7 +10,7 @@
 	<title>Settings</title>
 </svelte:head>
 
-<div class="flex h-full flex-col px-4 pb-4 pt-16">
+<div class="flex h-full flex-col px-4 pb-4 pt-10">
 	<Heading level="h1">Settings</Heading>
 
 	<div class="mt-8">

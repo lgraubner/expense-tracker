@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { formatISO } from 'date-fns';
-	import { CalendarIcon, XIcon } from 'lucide-svelte';
+	import { CalendarIcon } from 'lucide-svelte';
 	import type { ComponentEvents } from 'svelte';
 	import { enhance } from '$app/forms';
 	import CategorySelection from '$lib/components/category-selection.svelte';
-	import Heading from '$lib/components/heading.svelte';
+	import PageHeader from '$lib/components/page-header.svelte';
 	import type { ActionData, PageServerData } from './$types';
 
 	export let data: PageServerData;
@@ -96,16 +96,8 @@
 </svelte:head>
 
 <main class="h-full px-4 pb-4 pt-16">
-	<header
-		class="fixed left-0 top-0 flex h-16 w-full items-center justify-center border-b border-base-200"
-	>
-		<h1 class="text-lg font-semibold">New expense</h1>
-		<button
-			type="button"
-			on:click={handleClickClose}
-			class="btn btn-circle btn-ghost absolute right-2 top-2"><XIcon /></button
-		>
-	</header>
+	<PageHeader title="New expense" on:close={handleClickClose} />
+
 	<div class="flex h-full flex-col">
 		{#if page === 'amount'}
 			<div class="mt-8 flex items-center justify-center">
@@ -175,16 +167,14 @@
 				<input type="hidden" name="amount" bind:value={amount} />
 				<input type="hidden" name="description" bind:value={description} />
 
-				<div class="flex min-h-0 shrink grow flex-col">
-					<Heading level="h2">Category</Heading>
-
+				<div class="flex min-h-0 shrink grow flex-col pt-8">
 					{#if form?.error}
-						<div class="text-md mt-4 text-error">
+						<div class="text-md mb-4 text-center text-error">
 							{form.error}
 						</div>
 					{/if}
 
-					<div class="mt-4 min-h-0 shrink overflow-auto">
+					<div class="min-h-0 shrink overflow-auto">
 						<input type="hidden" name="categorySlug" bind:value={selectedCategorySlug} />
 
 						<CategorySelection categories={data.categories} on:change={handleChangeCategory} />

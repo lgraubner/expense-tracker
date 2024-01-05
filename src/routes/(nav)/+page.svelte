@@ -15,7 +15,7 @@
 	<title>Expense Tracker</title>
 </svelte:head>
 
-<div class="flex h-full flex-col overflow-auto px-4 pb-24 pt-16">
+<div class="flex h-full flex-col overflow-auto px-4 pb-24 pt-10">
 	<Heading level="h1">Expenses</Heading>
 
 	{#await data.expensesStream}
