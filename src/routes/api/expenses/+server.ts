@@ -8,7 +8,7 @@ const expenseWithCategory = Prisma.validator<Prisma.ExpenseDefaultArgs>()({
 	select: {
 		description: true,
 		amount: true,
-		createdAt: true,
+		issuedOn: true,
 		category: {
 			select: {
 				title: true,
@@ -32,9 +32,12 @@ export const GET: RequestHandler = async ({ locals }) => {
 		where: {
 			userId: session.user.userId
 		},
-		orderBy: {
-			createdAt: 'desc'
-		},
+		orderBy: [
+			{
+				issuedOn: 'desc'
+			},
+			{ createdAt: 'desc' }
+		],
 		take: 40
 	});
 
@@ -45,7 +48,7 @@ export const GET: RequestHandler = async ({ locals }) => {
 
 	for (const expense of expenses) {
 		// if current group is not empty and same day add to it
-		if (currentGroup.length > 0 && isSameDay(currentGroup[0].createdAt, expense.createdAt)) {
+		if (currentGroup.length > 0 && isSameDay(currentGroup[0].issuedOn, expense.issuedOn)) {
 			currentGroup.push(expense);
 			continue;
 		}

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { XIcon } from 'lucide-svelte';
+	import { formatISO } from 'date-fns';
+	import { CalendarIcon, XIcon } from 'lucide-svelte';
 	import type { ComponentEvents } from 'svelte';
 	import { enhance } from '$app/forms';
 	import CategorySelection from '$lib/components/category-selection.svelte';
@@ -10,6 +11,8 @@
 	export let form: ActionData;
 
 	let page: 'amount' | 'category' = 'amount';
+
+	let issuedOn = formatISO(new Date(), { representation: 'date' });
 	let amount = 0;
 	let description: string | null;
 	let selectedCategorySlug: string | null = null;
@@ -33,6 +36,10 @@
 
 	function handleClickClose() {
 		history.back();
+	}
+
+	function handleChangeDate(event: Event & { currentTarget: EventTarget & HTMLInputElement }) {
+		issuedOn = event.currentTarget.value;
 	}
 
 	function handleAmountKeydown(event: KeyboardEvent) {
@@ -88,14 +95,30 @@
 </svelte:head>
 
 <main class="h-full px-4 pb-4 pt-16">
-	<button
-		type="button"
-		on:click={handleClickClose}
-		class="btn btn-circle btn-ghost fixed right-2 top-2"><XIcon /></button
+	<header
+		class="fixed left-0 top-0 flex h-16 w-full items-center justify-center border-b border-base-200"
 	>
+		<h1 class="text-lg font-semibold">New expense</h1>
+		<button
+			type="button"
+			on:click={handleClickClose}
+			class="btn btn-circle btn-ghost absolute right-2 top-2"><XIcon /></button
+		>
+	</header>
 	<div class="flex h-full flex-col">
 		{#if page === 'amount'}
-			<Heading level="h1">New expense</Heading>
+			<div class="mt-8 flex items-center justify-center">
+				<div class="relative">
+					<input
+						type="date"
+						name="issuedOn"
+						value={issuedOn}
+						class="text-md input w-40 pr-8 text-center font-medium"
+						on:change={handleChangeDate}
+					/>
+					<CalendarIcon class="pointer-events-none absolute right-5 top-[15px]" size={16} />
+				</div>
+			</div>
 
 			<div class="flex grow flex-col items-center justify-center pb-24">
 				<div class="relative">
@@ -110,6 +133,7 @@
 					<div class="text-center text-5xl font-semibold tabular-nums">
 						<input
 							type="text"
+							name="amount"
 							class="w-full appearance-none bg-transparent pr-11 text-center tabular-nums focus:outline-none"
 							inputmode="numeric"
 							on:keydown={handleAmountKeydown}
@@ -127,6 +151,7 @@
 
 				<input
 					type="text"
+					name="description"
 					class="input mt-8 w-full text-center"
 					bind:value={description}
 					placeholder="Description"
@@ -141,6 +166,7 @@
 
 		{#if page === 'category'}
 			<form class="contents" method="post" use:enhance>
+				<input type="hidden" name="issuedOn" bind:value={issuedOn} />
 				<input type="hidden" name="amount" bind:value={amount} />
 				<input type="hidden" name="description" bind:value={description} />
 

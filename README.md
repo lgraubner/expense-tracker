@@ -3,6 +3,9 @@
 ## Todo
 
 - disable browser input validation
+- error page
+- solution for offline pages
+- added feedback toast
 
 ### later
 
@@ -16,7 +19,6 @@
   - add vaul
   - delete entry
     - uid for expense (for detail view?)
-- pick date
 - load more in timeline
 - shallow routing stuff
   - for desktop?

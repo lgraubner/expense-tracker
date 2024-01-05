@@ -29,6 +29,7 @@ export const actions = {
 		const data = await request.formData();
 
 		const form = newEntrySchema.safeParse({
+			issuedOn: data.get('issuedOn'),
 			amount: data.get('amount'),
 			description: data.get('description'),
 			categorySlug: data.get('categorySlug')
@@ -43,6 +44,7 @@ export const actions = {
 				data: {
 					amount: form.data.amount,
 					description: form.data.description,
+					issuedOn: form.data.issuedOn,
 					category: {
 						connect: {
 							slug: form.data.categorySlug

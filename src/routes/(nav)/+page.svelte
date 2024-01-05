@@ -31,7 +31,7 @@
 			<div class="mt-6 space-y-6">
 				{#each expenses as group}
 					<div class="space-y-3">
-						<DateHeading date={group[0].createdAt} />
+						<DateHeading date={group[0].issuedOn} />
 						<div
 							class="join join-vertical w-full divide-y divide-neutral rounded-lg border border-neutral"
 						>
