@@ -1,5 +1,7 @@
 import { redirect } from '@sveltejs/kit';
+import { startOfMonth } from 'date-fns';
 import { handleLoginRedirect } from '$lib/auth';
+import prisma from '$lib/server/prisma';
 import type { ExpenseWithCategory } from '../api/expenses/+server';
 import type { PageServerLoad } from './$types';
 
@@ -16,7 +18,20 @@ export const load: PageServerLoad = async (event) => {
 		res.json()
 	);
 
+	const currentMonthTotal = await prisma.expense.aggregate({
+		_sum: {
+			amount: true
+		},
+		where: {
+			issuedOn: {
+				gte: startOfMonth(new Date())
+			},
+			userId: session.user.userId
+		}
+	});
+
 	return {
-		expensesStream
+		expensesStream,
+		currentMonthTotal: currentMonthTotal._sum.amount
 	};
 };

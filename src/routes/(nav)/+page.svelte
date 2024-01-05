@@ -6,6 +6,7 @@
 	import ExpenseCardSkeleton from '$lib/components/expense-card-skeleton.svelte';
 	import ExpenseCard from '$lib/components/expense-card.svelte';
 	import Heading from '$lib/components/heading.svelte';
+	import { formatCents } from '$lib/currency';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -16,7 +17,15 @@
 </svelte:head>
 
 <div class="flex h-full flex-col overflow-auto px-4 pb-24 pt-10">
-	<Heading level="h1">Expenses</Heading>
+	<Heading level="h1">Overview</Heading>
+	{#if data.currentMonthTotal}
+		<div class="stats shrink-0 bg-base-200 shadow">
+			<div class="stat">
+				<div class="stat-title">Expenses this month</div>
+				<div class="stat-value">{formatCents(data.currentMonthTotal)}</div>
+			</div>
+		</div>
+	{/if}
 
 	{#await data.expensesStream}
 		<div class="mt-6 space-y-3">
