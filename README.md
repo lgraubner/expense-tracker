@@ -2,6 +2,7 @@
 
 ## Todo
 
+- adjust add category layout
 - disable browser input validation
 - error page
 - solution for offline pages

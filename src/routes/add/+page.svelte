@@ -12,7 +12,8 @@
 
 	let page: 'amount' | 'category' = 'amount';
 
-	let issuedOn = formatISO(new Date(), { representation: 'date' });
+	let maxDate = formatISO(new Date(), { representation: 'date' });
+	let issuedOn: string | undefined;
 	let amount = 0;
 	let description: string | null;
 	let selectedCategorySlug: string | null = null;
@@ -112,11 +113,15 @@
 					<input
 						type="date"
 						name="issuedOn"
-						value={issuedOn}
-						class="text-md input w-40 pr-8 text-center font-medium"
+						value={maxDate}
+						max={maxDate}
+						class="text-md input w-40 pr-8 text-center font-medium leading-none"
 						on:change={handleChangeDate}
 					/>
-					<CalendarIcon class="pointer-events-none absolute right-5 top-[15px]" size={16} />
+					<CalendarIcon
+						class="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2"
+						size={16}
+					/>
 				</div>
 			</div>
 

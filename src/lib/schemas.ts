@@ -1,3 +1,4 @@
+import { isBefore } from 'date-fns';
 import { z } from 'zod';
 
 export const newEntrySchema = z.object({
@@ -8,7 +9,8 @@ export const newEntrySchema = z.object({
 			if (val) {
 				const date = new Date(val);
 
-				if (!isNaN(date.getTime())) {
+				// only use valid dates which are today or older
+				if (!isNaN(date.getTime()) && isBefore(date, new Date())) {
 					return date;
 				}
 			}
