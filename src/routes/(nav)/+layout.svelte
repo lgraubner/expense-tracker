@@ -11,7 +11,7 @@
 	<a href="/" class:active={$page.url.pathname === '/'} aria-label="Home">
 		<HomeIcon />
 	</a>
-	<a href="/statistics" class:active={$page.url.pathname === '/statistics'} aria-label="Statistics">
+	<a href="/analysis" class:active={$page.url.pathname === '/analysis'} aria-label="Analysis">
 		<BarChartIcon />
 	</a>
 	<a href="/settings" class:active={$page.url.pathname === '/settings'} aria-label="Settings">
