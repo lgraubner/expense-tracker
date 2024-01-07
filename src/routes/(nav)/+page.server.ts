@@ -14,24 +14,29 @@ export const load: PageServerLoad = async (event) => {
 		redirect(302, handleLoginRedirect(event));
 	}
 
-	const expensesStream: Promise<ExpenseWithCategory[][]> = fetch('/api/expenses').then((res) =>
-		res.json()
-	);
+	async function getGroupedExpenses(): Promise<ExpenseWithCategory[][]> {
+		const res = await fetch('/api/expenses');
 
-	const currentMonthTotal = await prisma.expense.aggregate({
-		_sum: {
-			amount: true
-		},
-		where: {
-			issuedOn: {
-				gte: startOfMonth(new Date())
+		return res.json();
+	}
+
+	const [currentMonthTotal, expenses] = await Promise.all([
+		prisma.expense.aggregate({
+			_sum: {
+				amount: true
 			},
-			userId: session.user.userId
-		}
-	});
+			where: {
+				issuedOn: {
+					gte: startOfMonth(new Date())
+				},
+				userId: session.user.userId
+			}
+		}),
+		getGroupedExpenses()
+	]);
 
 	return {
-		expensesStream,
+		expenses,
 		currentMonthTotal: currentMonthTotal._sum.amount
 	};
 };
