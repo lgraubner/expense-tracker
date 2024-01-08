@@ -18,16 +18,41 @@ model Expense {
   categoryId  Int
   user        User     @relation(fields: [userId], references: [id])
   userId      String
-  issuedOn    DateTime @db.Date @default(now())
+  issuedOn    DateTime @default(now()) @db.Date
   createdAt   DateTime @default(now())
 }
 
+enum BookingType {
+  INCOME
+  EXPENSE
+}
+
+model Booking {
+  id          String      @id @default(cuid())
+  amount      Int         @db.UnsignedInt
+  description String?
+  type        BookingType
+  category    Category    @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  user        User        @relation(fields: [userId], references: [id])
+  userId      String
+  issuedOn    DateTime    @default(now()) @db.Date
+  createdAt   DateTime    @default(now())
+}
+
+enum CategoryType {
+  INCOME
+  EXPENSE
+}
+
 model Category {
-  id        Int       @id @default(autoincrement())
+  id        Int          @id @default(autoincrement())
   title     String
-  slug      String    @unique
+  slug      String       @unique
+  type      CategoryType @default(EXPENSE)
   expenses  Expense[]
-  createdAt DateTime  @default(now())
+  bookings  Booking[]
+  createdAt DateTime     @default(now())
 }
 
 model User {
@@ -38,6 +63,7 @@ model User {
   auth_session Session[]
   key          AuthKey[]
   expenses     Expense[]
+  bookings     Booking[]
 }
 
 model Session {
