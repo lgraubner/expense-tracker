@@ -31,6 +31,9 @@ pnpm prisma migrate reset
 # access local databsae
 docker compose exec db mariadb -uroot -ppassword db
 
+# access remote db (on server)
+dokku mariadb:connect expense-tracker-db
+
 # run seeds
 pnpm prisma db seed
 ```
