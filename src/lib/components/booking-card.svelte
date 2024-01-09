@@ -19,7 +19,7 @@
 			{label ?? category.title}
 		</div>
 	</div>
-	<div class="font-medium" class:text-success={type === BookingType.INCOME}>
-		{type === BookingType.INCOME ? formatCents(amount) : formatCents(amount * -1)}
+	<div class="font-medium" class:text-success={type === 'INCOME'}>
+		{type === 'INCOME' ? formatCents(amount) : formatCents(amount * -1)}
 	</div>
 </div>
