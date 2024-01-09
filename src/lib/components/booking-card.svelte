@@ -1,10 +1,11 @@
 <script lang="ts">
-	import type { Category } from '@prisma/client';
+	import { BookingType, type Category } from '@prisma/client';
 	import { categoryIcons } from '$lib/category';
 	import { formatCents } from '$lib/currency';
 
 	export let label: string | null;
 	export let amount: number;
+	export let type: BookingType;
 	export let category: Pick<Category, 'slug' | 'title'>;
 </script>
 
@@ -18,5 +19,7 @@
 			{label ?? category.title}
 		</div>
 	</div>
-	<div class="font-medium">{formatCents(amount * -1)}</div>
+	<div class="font-medium" class:text-success={type === BookingType.INCOME}>
+		{type === BookingType.INCOME ? formatCents(amount) : formatCents(amount * -1)}
+	</div>
 </div>

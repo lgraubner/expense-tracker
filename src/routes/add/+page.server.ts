@@ -1,3 +1,4 @@
+import { BookingType } from '@prisma/client';
 import { fail, redirect } from '@sveltejs/kit';
 import { newEntrySchema } from '$lib/schemas';
 import { logger } from '$lib/server/logger';
@@ -12,13 +13,17 @@ export const load: PageServerLoad = async () => {
 			slug: true,
 			_count: {
 				select: {
-					expenses: true
+					bookings: {
+						where: {
+							type: BookingType.EXPENSE
+						}
+					}
 				}
 			}
 		},
 		orderBy: [
 			{
-				expenses: {
+				bookings: {
 					_count: 'desc'
 				}
 			},
@@ -53,11 +58,12 @@ export const actions = {
 		}
 
 		try {
-			await prisma.expense.create({
+			await prisma.booking.create({
 				data: {
 					amount: form.data.amount,
 					description: form.data.description,
 					issuedOn: form.data.issuedOn,
+					type: BookingType.EXPENSE,
 					category: {
 						connect: {
 							slug: form.data.categorySlug

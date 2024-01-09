@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { PlusIcon } from 'lucide-svelte';
 	import IllustrationStars from '$lib/assets/empty.svg';
+	import BookingCard from '$lib/components/booking-card.svelte';
 	import DateHeading from '$lib/components/date-heading.svelte';
-	import ExpenseCard from '$lib/components/expense-card.svelte';
 	import Heading from '$lib/components/heading.svelte';
 	import { formatCents } from '$lib/currency';
 	import type { PageData } from './$types';
@@ -25,19 +25,20 @@
 		</div>
 	{/if}
 
-	{#if data.expenses.length > 0}
+	{#if data.bookings.length > 0}
 		<div class="mt-6 space-y-6">
-			{#each data.expenses as group}
+			{#each data.bookings as group}
 				<div class="space-y-3">
 					<DateHeading date={group[0].issuedOn} />
 					<div
 						class="join join-vertical w-full divide-y divide-neutral rounded-lg border border-neutral"
 					>
-						{#each group as expense}
-							<ExpenseCard
-								label={expense.description}
-								amount={expense.amount}
-								category={expense.category}
+						{#each group as booking}
+							<BookingCard
+								label={booking.description}
+								amount={booking.amount}
+								type={booking.type}
+								category={booking.category}
 							/>
 						{/each}
 					</div>

@@ -1,8 +1,9 @@
+import { BookingType } from '@prisma/client';
 import { redirect } from '@sveltejs/kit';
 import { startOfMonth } from 'date-fns';
 import { handleLoginRedirect } from '$lib/auth';
 import prisma from '$lib/server/prisma';
-import type { ExpenseWithCategory } from '../api/expenses/+server';
+import type { BookingWithCategory } from '../api/bookings/+server';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
@@ -14,29 +15,30 @@ export const load: PageServerLoad = async (event) => {
 		redirect(302, handleLoginRedirect(event));
 	}
 
-	async function getGroupedExpenses(): Promise<ExpenseWithCategory[][]> {
-		const res = await fetch('/api/expenses');
+	async function getGroupedBookings(): Promise<BookingWithCategory[][]> {
+		const res = await fetch('/api/bookings');
 
 		return res.json();
 	}
 
-	const [currentMonthTotal, expenses] = await Promise.all([
-		prisma.expense.aggregate({
+	const [currentMonthTotal, bookings] = await Promise.all([
+		prisma.booking.aggregate({
 			_sum: {
 				amount: true
 			},
 			where: {
+				type: BookingType.EXPENSE,
 				issuedOn: {
 					gte: startOfMonth(new Date())
 				},
 				userId: session.user.userId
 			}
 		}),
-		getGroupedExpenses()
+		getGroupedBookings()
 	]);
 
 	return {
-		expenses,
+		bookings,
 		currentMonthTotal: currentMonthTotal._sum.amount
 	};
 };

@@ -4,11 +4,12 @@ import { isSameDay } from 'date-fns';
 import prisma from '$lib/server/prisma';
 import type { RequestHandler } from './$types';
 
-const expenseWithCategory = Prisma.validator<Prisma.ExpenseDefaultArgs>()({
+const bookingWithCategory = Prisma.validator<Prisma.BookingDefaultArgs>()({
 	select: {
 		description: true,
 		amount: true,
 		issuedOn: true,
+		type: true,
 		category: {
 			select: {
 				title: true,
@@ -18,7 +19,7 @@ const expenseWithCategory = Prisma.validator<Prisma.ExpenseDefaultArgs>()({
 	}
 });
 
-export type ExpenseWithCategory = Prisma.ExpenseGetPayload<typeof expenseWithCategory>;
+export type BookingWithCategory = Prisma.BookingGetPayload<typeof bookingWithCategory>;
 
 export const GET: RequestHandler = async ({ locals }) => {
 	const session = await locals.auth.validate();
@@ -27,8 +28,8 @@ export const GET: RequestHandler = async ({ locals }) => {
 		return error(401);
 	}
 
-	const expenses = await prisma.expense.findMany({
-		select: expenseWithCategory.select,
+	const bookings = await prisma.booking.findMany({
+		select: bookingWithCategory.select,
 		where: {
 			userId: session.user.userId
 		},
@@ -41,30 +42,30 @@ export const GET: RequestHandler = async ({ locals }) => {
 		take: 40
 	});
 
-	type ExpenseResult = typeof expenses;
+	type BookingsResult = typeof bookings;
 
-	const groupedExpenses: ExpenseResult[] = [];
-	let currentGroup: ExpenseResult = [];
+	const groupedBookings: BookingsResult[] = [];
+	let currentGroup: BookingsResult = [];
 
-	for (const expense of expenses) {
+	for (const booking of bookings) {
 		// if current group is not empty and same day add to it
-		if (currentGroup.length > 0 && isSameDay(currentGroup[0].issuedOn, expense.issuedOn)) {
-			currentGroup.push(expense);
+		if (currentGroup.length > 0 && isSameDay(currentGroup[0].issuedOn, booking.issuedOn)) {
+			currentGroup.push(booking);
 			continue;
 		}
 
 		// if current group is not empty push it
 		if (currentGroup.length > 0) {
-			groupedExpenses.push(currentGroup);
+			groupedBookings.push(currentGroup);
 		}
 
 		// create new group
-		currentGroup = [expense];
+		currentGroup = [booking];
 	}
 
 	if (currentGroup.length > 0) {
-		groupedExpenses.push(currentGroup);
+		groupedBookings.push(currentGroup);
 	}
 
-	return json(groupedExpenses);
+	return json(groupedBookings);
 };
