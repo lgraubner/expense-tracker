@@ -1,19 +1,14 @@
 import { BookingType } from '@prisma/client';
-import { redirect } from '@sveltejs/kit';
 import { startOfMonth } from 'date-fns';
-import { handleLoginRedirect } from '$lib/auth';
+import { isAuthenticated } from '$lib/server/auth';
 import prisma from '$lib/server/prisma';
 import type { BookingWithCategory } from '../api/bookings/+server';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
-	const { fetch, locals } = event;
+	const { fetch } = event;
 
-	const session = await locals.auth.validate();
-
-	if (!session) {
-		redirect(302, handleLoginRedirect(event));
-	}
+	const session = await isAuthenticated(event);
 
 	async function getGroupedBookings(): Promise<BookingWithCategory[][]> {
 		const res = await fetch('/api/bookings');

@@ -1,7 +1,7 @@
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { fail, redirect } from '@sveltejs/kit';
 import { setError, superValidate } from 'sveltekit-superforms/server';
-import { signupSchema } from '$lib/auth';
+import { signupSchema } from '$lib/schemas';
 import { logger } from '$lib/server/logger';
 import { auth } from '$lib/server/lucia';
 import type { Actions, PageServerLoad } from './$types';

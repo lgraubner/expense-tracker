@@ -1,11 +1,14 @@
 import { BookingType } from '@prisma/client';
 import { fail, redirect } from '@sveltejs/kit';
 import { newEntrySchema } from '$lib/schemas';
+import { isAuthenticated } from '$lib/server/auth';
 import { logger } from '$lib/server/logger';
 import prisma from '$lib/server/prisma';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async (event) => {
+	await isAuthenticated(event);
+
 	const categories = await prisma.category.findMany({
 		select: {
 			id: true,

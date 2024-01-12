@@ -23,6 +23,7 @@ declare global {
 		type DatabaseUserAttributes = {
 			email: string;
 			emailVerifiedAt: Date | null;
+			role: AuthRole;
 		};
 		type DatabaseSessionAttributes = unknown;
 	}

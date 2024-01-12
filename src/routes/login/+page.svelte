@@ -1,7 +1,7 @@
 <script lang="ts">
 	import clsx from 'clsx';
 	import { superForm } from 'sveltekit-superforms/client';
-	import { loginSchema } from '$lib/auth';
+	import { loginSchema } from '$lib/schemas';
 	import type { PageData } from './$types';
 
 	export let data: PageData;

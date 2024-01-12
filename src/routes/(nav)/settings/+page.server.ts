@@ -1,14 +1,10 @@
 import { fail, redirect } from '@sveltejs/kit';
-import { handleLoginRedirect } from '$lib/auth';
+import { isAuthenticated } from '$lib/server/auth';
 import { auth } from '$lib/server/lucia';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
-	const session = await event.locals.auth.validate();
-
-	if (!session) {
-		redirect(302, handleLoginRedirect(event));
-	}
+	const session = await isAuthenticated(event);
 
 	return {
 		email: session.user.email

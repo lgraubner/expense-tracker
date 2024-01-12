@@ -1,7 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { LuciaError } from 'lucia';
 import { message, superValidate } from 'sveltekit-superforms/server';
-import { loginSchema } from '$lib/auth';
+import { loginSchema } from '$lib/schemas';
 import { logger } from '$lib/server/logger';
 import { auth } from '$lib/server/lucia';
 import type { Actions, PageServerLoad } from './$types';
@@ -58,11 +58,11 @@ export const actions = {
 			});
 		}
 
-		const returnTo = url.searchParams.get('return_to');
+		const continueTo = url.searchParams.get('continue');
 
-		if (returnTo) {
+		if (continueTo) {
 			// avoid malicious redirects
-			redirect(307, `/${decodeURIComponent(returnTo).slice(1)}`);
+			redirect(307, `/${decodeURIComponent(continueTo).slice(1)}`);
 		}
 
 		redirect(307, '/');
