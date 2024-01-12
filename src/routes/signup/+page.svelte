@@ -7,7 +7,6 @@
 	export let data: PageData;
 
 	const { form, errors, enhance, delayed } = superForm(data.form, {
-		customValidity: true,
 		validators: signupSchema,
 		validationMethod: 'submit-only',
 		taintedMessage: false

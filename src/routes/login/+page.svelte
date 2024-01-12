@@ -7,7 +7,6 @@
 	export let data: PageData;
 
 	const { form, errors, enhance, delayed, message } = superForm(data.form, {
-		customValidity: true,
 		validators: loginSchema,
 		validationMethod: 'submit-only',
 		taintedMessage: false
@@ -65,11 +64,10 @@
 				<p class="mt-2 hidden text-right">
 					<a href="/password-reset" class="link">Forgot your password?</a>
 				</p>
-
-				<button type="submit" class="btn btn-primary btn-block mt-8"
-					>{#if $delayed}<span class="loading loading-spinner" />{:else}Login{/if}</button
-				>
 			</div>
+			<button type="submit" class="btn btn-primary btn-block mt-8"
+				>{#if $delayed}<span class="loading loading-spinner" />{:else}Login{/if}</button
+			>
 		</form>
 		<p class="mt-10">No account yet? <a href="/signup" class="link">Sign up</a></p>
 	</div>
