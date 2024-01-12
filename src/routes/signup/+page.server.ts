@@ -1,3 +1,4 @@
+import { UserRole } from '@prisma/client';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { fail, redirect } from '@sveltejs/kit';
 import { setError, superValidate } from 'sveltekit-superforms/server';
@@ -25,7 +26,8 @@ export const actions = {
 				},
 				attributes: {
 					email,
-					emailVerifiedAt: null
+					emailVerifiedAt: null,
+					role: UserRole.USER
 				}
 			});
 
