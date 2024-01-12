@@ -1,9 +1,5 @@
+import { UserRole } from '@prisma/client';
 import { error, redirect, type ServerLoadEvent } from '@sveltejs/kit';
-
-export enum AuthRole {
-	USER,
-	ADMIN
-}
 
 export function handleLoginRedirect(url: URL) {
 	const fromUrl = url.pathname + url.search;
@@ -32,7 +28,7 @@ export async function isAuthenticated(event: ServerLoadEvent) {
 export async function isAdmin(event: ServerLoadEvent) {
 	const session = await isAuthenticated(event);
 
-	if (session.user.role === AuthRole.ADMIN) {
+	if (session.user.role === UserRole.ADMIN) {
 		return error(404);
 	}
 

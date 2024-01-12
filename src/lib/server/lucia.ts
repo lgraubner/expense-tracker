@@ -3,7 +3,6 @@ import { lucia } from 'lucia';
 import { sveltekit } from 'lucia/middleware';
 import { dev } from '$app/environment';
 import client from '$lib/server/prisma';
-import { AuthRole } from './auth';
 
 export const auth = lucia({
 	env: dev ? 'DEV' : 'PROD',
@@ -17,7 +16,7 @@ export const auth = lucia({
 		return {
 			email: data.email,
 			emailVerifiedAt: data.emailVerifiedAt,
-			role: data.email === 'mail@larsgraubner.de' ? AuthRole.ADMIN : AuthRole.USER
+			role: data.role
 		};
 	}
 });

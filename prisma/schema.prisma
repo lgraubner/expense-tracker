@@ -42,10 +42,16 @@ model Category {
   createdAt DateTime     @default(now())
 }
 
+enum UserRole {
+  USER
+  ADMIN
+}
+
 model User {
   id              String    @id @unique
   email           String    @unique
   emailVerifiedAt DateTime?
+  role            UserRole  @default(USER)
 
   auth_session Session[]
   key          AuthKey[]
