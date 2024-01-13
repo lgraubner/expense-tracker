@@ -53,7 +53,7 @@ dokku config:set expense-tracker-web PUBLIC_APP_URL="https://et.larsgraubner.de"
 Additionally it has to be added the the `Dockefile` file with `ARG
 PUBLIC_APP_URL`.
 
-You might need to add this to Github to ensure Github Actions run through.
+You might need to add them to Github Action steps as well to ensure they run through.
 
 ### Dynamic (runtime)
 
