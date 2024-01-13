@@ -4,8 +4,6 @@ import { dev } from '$app/environment';
 import { generatePreviewToken } from '$lib/server/email/utils';
 import type { PageServerLoad } from './$types';
 
-export const prerender = true;
-
 function basename(path: string, ext = '.svelte') {
 	const parts = path.split('/');
 
