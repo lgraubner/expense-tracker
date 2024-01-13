@@ -38,6 +38,34 @@ dokku mariadb:connect expense-tracker-db
 pnpm prisma db seed
 ```
 
+## Environment variables
+
+### Static
+
+To add a new environment variable which injected on build do this:
+
+```
+# on dokku server
+dokku docker-options:add expense-tracker-web build '--build-arg PUBLIC_APP_URL'
+```
+
+Additionally it has to be added the the `Dockefile` file with `ARG
+PUBLIC_APP_URL`.
+
+You might need to add this to Github to ensure Github Actions run through.
+
+### Dynamic (runtime)
+
+```
+# on dokku server
+
+# add variable
+dokku config:set expense-tracker-web MY_SECRET=secret
+
+# remove variable
+dokku config:unset expense-tracker-web MY_SECRET
+```
+
 ## Deployment
 
 ```

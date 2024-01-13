@@ -19,6 +19,8 @@ RUN npm install -g pnpm && pnpm install --frozen-lockfile
 
 COPY . /app/tmp
 
+ARG PUBLIC_APP_URL
+
 RUN pnpm svelte-kit sync && pnpm prisma generate && pnpm run build
 
 RUN rm -rf src
