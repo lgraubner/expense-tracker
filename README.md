@@ -47,6 +47,7 @@ To add a new environment variable which injected on build do this:
 ```
 # on dokku server
 dokku docker-options:add expense-tracker-web build '--build-arg PUBLIC_APP_URL'
+dokku config:set expense-tracker-web PUBLIC_APP_URL="https://et.larsgraubner.de"
 ```
 
 Additionally it has to be added the the `Dockefile` file with `ARG
