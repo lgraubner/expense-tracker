@@ -28,8 +28,8 @@ export async function isAuthenticated(event: ServerLoadEvent) {
 export async function isAdmin(event: ServerLoadEvent) {
 	const session = await isAuthenticated(event);
 
-	if (session.user.role === UserRole.ADMIN) {
-		return error(404);
+	if (session.user.role !== UserRole.ADMIN) {
+		return error(404, 'Not Found');
 	}
 
 	return session;

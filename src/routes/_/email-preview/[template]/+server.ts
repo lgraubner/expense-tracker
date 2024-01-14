@@ -24,7 +24,7 @@ function validateToken(templateName: string, url: URL) {
 	const token = url.searchParams.get('token');
 
 	if (!dev && token !== generatePreviewToken(templateName)) {
-		error(404, 'Not found');
+		error(404, 'Not Found');
 	}
 }
 
@@ -32,7 +32,7 @@ export const GET: RequestHandler = ({ params, url }) => {
 	const templateName = params.template;
 
 	if (!templateName) {
-		error(404, 'Not found');
+		error(404, 'Not Found');
 	}
 
 	validateToken(templateName, url);
@@ -40,7 +40,7 @@ export const GET: RequestHandler = ({ params, url }) => {
 	const template = templates[templateName];
 
 	if (!template) {
-		error(404, 'Not found');
+		error(404, 'Not Found');
 	}
 
 	const email = render(template.component, template.data);
