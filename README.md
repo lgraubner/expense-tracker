@@ -1,5 +1,9 @@
 # Expense tracker
 
+Mobile first expense tracker PWA
+
+![Screenshot of expense tracker app](screenshot.png)
+
 ## Development
 
 ```
